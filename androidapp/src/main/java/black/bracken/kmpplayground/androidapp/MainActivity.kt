@@ -20,6 +20,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import black.bracken.kmpplayground.Greeting
 import black.bracken.kmpplayground.androidapp.ui.theme.KmpplaygroundTheme
+import black.bracken.kmpplayground.repo.ApiRepository
+import black.bracken.kmpplayground.repo.ApiRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -55,6 +57,8 @@ data class MainUiState(
 )
 
 class MainViewModel : ViewModel() {
+    val apiRepository: ApiRepository = ApiRepositoryImpl()
+
     private val _uiState = MutableStateFlow(MainUiState())
     val uiState = _uiState.asStateFlow()
 
@@ -62,7 +66,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             _uiState.update {
                 it.copy(
-                    textFromKmp = Greeting().greet()
+                    textFromKmp = apiRepository.getBreeds().joinToString()
                 )
             }
         }

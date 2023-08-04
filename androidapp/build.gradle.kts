@@ -68,4 +68,6 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
 
     implementation(project(":shared"))
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 }
