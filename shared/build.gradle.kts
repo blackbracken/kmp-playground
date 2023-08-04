@@ -27,6 +27,7 @@ kotlin {
             dependencies {
                 implementation(libs.ktor.client.core)
                 implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
         val commonTest by getting {
